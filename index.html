@@ -3,142 +3,526 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Supreme IT - Enterprise Solutions</title>
-    <link rel="stylesheet" href="style.css">
+    <title>Supreme IT | Enterprise Portal</title>
+    <!-- פונטים חדשניים מ-Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Plus+Jakarta+Sans:wght@400;600;700;800&display=swap" rel="stylesheet">
+
+    <style>
+        /* RESET & BASE */
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            background-color: #090d16;
+            color: #e2e8f0;
+            line-height: 1.6;
+            overflow-x: hidden;
+            position: relative;
+            min-height: 100vh;
+        }
+
+        /* BACKGROUND CANVAS FOR JS PARTICLES */
+        #bg-canvas {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 0;
+            pointer-events: none;
+        }
+
+        /* CONTAINER */
+        .wrapper {
+            position: relative;
+            z-index: 1;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+
+        /* HEADER */
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 24px 0;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+        }
+
+        .logo-box {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+        }
+
+        .logo-icon {
+            width: 48px;
+            height: 48px;
+            background: linear-gradient(135deg, #a855f7, #ec4899);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: 'Press Start 2P', cursive;
+            font-size: 18px;
+            color: #fff;
+            box-shadow: 0 0 20px rgba(168, 85, 247, 0.5);
+            text-shadow: 2px 2px #000;
+        }
+
+        .logo-text h1 {
+            font-family: 'Press Start 2P', cursive;
+            font-size: 16px;
+            background: linear-gradient(90deg, #38bdf8, #818cf8, #c084fc);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            letter-spacing: -0.5px;
+        }
+
+        .logo-text p {
+            font-size: 12px;
+            color: #64748b;
+        }
+
+        nav a {
+            color: #94a3b8;
+            text-decoration: none;
+            margin-left: 24px;
+            font-weight: 600;
+            font-size: 14px;
+            transition: all 0.2s;
+        }
+
+        nav a:hover {
+            color: #38bdf8;
+            text-shadow: 0 0 8px rgba(56, 189, 248, 0.6);
+        }
+
+        /* HERO & MAIN CONTENT GRID */
+        .main-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 48px;
+            align-items: start;
+            padding: 60px 0;
+        }
+
+        /* HERO TEXT */
+        .hero-badge {
+            display: inline-block;
+            padding: 6px 14px;
+            background: rgba(168, 85, 247, 0.15);
+            border: 1px solid rgba(168, 85, 247, 0.4);
+            border-radius: 20px;
+            color: #c084fc;
+            font-size: 12px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 16px;
+        }
+
+        .hero-title {
+            font-family: 'Press Start 2P', cursive;
+            font-size: 26px;
+            line-height: 1.5;
+            color: #fff;
+            margin-bottom: 20px;
+            text-shadow: 0 0 15px rgba(255, 255, 255, 0.2);
+        }
+
+        .hero-title span {
+            color: #38bdf8;
+        }
+
+        .hero-description {
+            font-size: 16px;
+            color: #94a3b8;
+            margin-bottom: 30px;
+        }
+
+        /* FEATURES CARDS */
+        .feature-cards {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 16px;
+            margin-top: 30px;
+        }
+
+        .card {
+            background: rgba(15, 23, 42, 0.6);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 16px;
+            padding: 20px;
+            backdrop-filter: blur(10px);
+            transition: transform 0.3s, border-color 0.3s;
+        }
+
+        .card:hover {
+            transform: translateY(-4px);
+            border-color: rgba(56, 189, 248, 0.4);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+        }
+
+        .card-icon {
+            font-size: 24px;
+            margin-bottom: 8px;
+        }
+
+        .card h4 {
+            font-family: 'Press Start 2P', cursive;
+            font-size: 11px;
+            color: #f1f5f9;
+            margin-bottom: 6px;
+        }
+
+        .card p {
+            font-size: 12px;
+            color: #64748b;
+        }
+
+        /* FORM CONTAINER */
+        .form-card {
+            background: rgba(15, 23, 42, 0.85);
+            border: 1px solid rgba(168, 85, 247, 0.3);
+            border-radius: 24px;
+            padding: 36px;
+            box-shadow: 0 0 40px rgba(168, 85, 247, 0.15);
+            backdrop-filter: blur(12px);
+            position: relative;
+        }
+
+        .form-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: linear-gradient(90deg, #38bdf8, #a855f7, #ec4899);
+            border-radius: 24px 24px 0 0;
+        }
+
+        .form-title {
+            font-family: 'Press Start 2P', cursive;
+            font-size: 16px;
+            color: #fff;
+            margin-bottom: 8px;
+        }
+
+        .form-subtitle {
+            font-size: 13px;
+            color: #94a3b8;
+            margin-bottom: 24px;
+        }
+
+        /* FORM ELEMENTS */
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 16px;
+            margin-bottom: 16px;
+        }
+
+        .form-group {
+            margin-bottom: 16px;
+        }
+
+        label {
+            display: block;
+            font-size: 12px;
+            font-weight: 700;
+            color: #cbd5e1;
+            margin-bottom: 6px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        input[type="text"],
+        input[type="email"],
+        select {
+            width: 100%;
+            padding: 12px 14px;
+            background: rgba(30, 41, 59, 0.7);
+            border: 1px solid rgba(255, 255, 255, 0.12);
+            border-radius: 10px;
+            color: #fff;
+            font-size: 14px;
+            font-family: inherit;
+            outline: none;
+            transition: all 0.2s;
+        }
+
+        input[type="text"]:focus,
+        input[type="email"]:focus,
+        select:focus {
+            border-color: #38bdf8;
+            box-shadow: 0 0 12px rgba(56, 189, 248, 0.3);
+            background: rgba(30, 41, 59, 0.9);
+        }
+
+        select option {
+            background-color: #0f172a;
+            color: #fff;
+        }
+
+        .submit-btn {
+            width: 100%;
+            padding: 14px;
+            margin-top: 10px;
+            background: linear-gradient(135deg, #38bdf8, #818cf8, #a855f7);
+            border: none;
+            border-radius: 12px;
+            color: #fff;
+            font-family: 'Press Start 2P', cursive;
+            font-size: 12px;
+            cursor: pointer;
+            box-shadow: 0 0 20px rgba(56, 189, 248, 0.4);
+            transition: all 0.2s;
+        }
+
+        .submit-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 0 30px rgba(168, 85, 247, 0.6);
+        }
+
+        /* FOOTER */
+        footer {
+            text-align: center;
+            padding: 40px 0;
+            color: #475569;
+            font-size: 12px;
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        /* RESPONSIVE */
+        @media (max-width: 900px) {
+            .main-grid {
+                grid-template-columns: 1fr;
+            }
+            .feature-cards {
+                grid-template-columns: 1fr;
+            }
+            .form-row {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
 </head>
 <body>
 
-    <!-- Header -->
-    <header class="main-header">
-        <div class="logo-area">
-            <div class="logo-bubble">S</div>
-            <div class="logo-text">
-                <h1>Supreme IT</h1>
-                <p>Enterprise Hardware & Software</p>
+    <!-- CANVAS BACKGROUND FOR ANIMATED PARTICLES -->
+    <canvas id="bg-canvas"></canvas>
+
+    <div class="wrapper">
+        <!-- HEADER -->
+        <header>
+            <div class="logo-box">
+                <div class="logo-icon">S</div>
+                <div class="logo-text">
+                    <h1>SUPREME IT</h1>
+                    <p>ENTERPRISE SYSTEMS</p>
+                </div>
             </div>
-        </div>
-        <nav class="main-nav">
-            <a href="#about">About</a>
-            <a href="#solutions">Solutions</a>
-            <a href="#contact">Contact Us</a>
-        </nav>
-    </header>
+            <nav>
+                <a href="#about">ABOUT</a>
+                <a href="#solutions">SOLUTIONS</a>
+                <a href="#contact">CONTACT</a>
+            </nav>
+        </header>
 
-    <!-- Hero Section -->
-    <section class="hero" id="about">
-        <div class="hero-text">
-            <p class="hero-tagline">Global IT Services</p>
-            <h2>Powering Enterprise Technology Forward</h2>
-            <p>From hardware infrastructure to cloud solutions, Supreme IT delivers top-tier technology to corporate leaders across the US, UK, and Japan.</p>
-            <a href="#contact" class="btn-primary">Get Started</a>
-        </div>
-        <div class="hero-visual">
-            <div class="pixel-frame">
-                <div style="font-size: 50px; color: #fff;">💻</div>
+        <!-- MAIN SECTION -->
+        <div class="main-grid">
+            <!-- LEFT COLUMN: HERO CONTENT -->
+            <div class="hero-content" id="about">
+                <span class="hero-badge">⚡ NEXT-GEN HARDWARE & CLOUD</span>
+                <h2 class="hero-title">POWERING <span>ENTERPRISE</span> FORWARD</h2>
+                <p class="hero-description">
+                    Supreme IT delivers high-performance infrastructure, cloud deployment, and 24/7 dedicated support to corporate leaders globally.
+                </p>
+
+                <div class="feature-cards" id="solutions">
+                    <div class="card">
+                        <div class="card-icon">🌐</div>
+                        <h4>GLOBAL MESH</h4>
+                        <p>Ultra-low latency infrastructure across US, EU & JP.</p>
+                    </div>
+                    <div class="card">
+                        <div class="card-icon">🔒</div>
+                        <h4>CYBER GUARD</h4>
+                        <p>Enterprise-grade threat prevention & automated compliance.</p>
+                    </div>
+                    <div class="card">
+                        <div class="card-icon">🚀</div>
+                        <h4>CLOUD MATRIX</h4>
+                        <p>Seamless hybrid cloud integration for scalable growth.</p>
+                    </div>
+                    <div class="card">
+                        <div class="card-icon">⚡</div>
+                        <h4>24/7 SUPPORT</h4>
+                        <p>Dedicated engineers on standby to keep you online.</p>
+                    </div>
+                </div>
             </div>
-            <div class="pixel-shadow"></div>
-            <div class="hero-floating-tag">24/7 IT Support</div>
-        </div>
-    </section>
 
-    <div class="section-divider"></div>
+            <!-- RIGHT COLUMN: WEB2LEAD FORM -->
+            <div class="form-card" id="contact">
+                <h3 class="form-title">CONNECT WITH US</h3>
+                <p class="form-subtitle">Fill out the request below to trigger automated Lead creation in Salesforce.</p>
 
-    <!-- Contact Form Section -->
-    <section class="section section-soft" id="contact">
-        <h2>Contact Our Sales Team</h2>
-        <p style="margin-bottom: 20px;">Fill out the form below to connect with our regional specialists.</p>
+                <form action="https://webto.salesforce.com/servlet/servlet.WebToLead?encoding=UTF-8&orgId=00DQy00000vnb7F" method="POST">
 
-        <div class="contact-box" style="max-width: 100%;">
-            <form action="https://webto.salesforce.com/servlet/servlet.WebToLead?encoding=UTF-8&orgId=00DQy00000vnb7F" method="POST">
+                    <!-- HIDDEN SYSTEM FIELDS -->
+                    <input type="hidden" name="oid" value="00DQy00000vnb7F">
+                    <input type="hidden" name="retURL" value="https://www.google.com">
+                    <input type="hidden" id="lead_source" name="lead_source" value="Web" />
+                    
+                    <!-- CAMPAIGN ASSIGNMENT (Replace YOUR_CAMPAIGN_ID with your actual Campaign ID starting with 701) -->
+                    <input type="hidden" name="Campaign_ID" value="YOUR_CAMPAIGN_ID">
+                    <input type="hidden" name="member_status" value="Responded">
 
-                <!-- Salesforce System Fields -->
-                <input type="hidden" name="oid" value="00DQy00000vnb7F">
-                <input type="hidden" name="retURL" value="https://www.google.com">
-                <input type="hidden" id="lead_source" name="lead_source" value="Web" />
-                
-                <!-- Campaign ID Assignment -->
-                <input type="hidden" name="Campaign_ID" value="YOUR_CAMPAIGN_ID">
-                <input type="hidden" name="member_status" value="Responded">
-
-                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 12px;">
-                    <div>
-                        <label for="first_name">First Name</label>
-                        <input id="first_name" name="first_name" type="text" required />
+                    <!-- FORM FIELDS -->
+                    <div class="form-row">
+                        <div>
+                            <label for="first_name">First Name *</label>
+                            <input id="first_name" name="first_name" type="text" placeholder="John" required />
+                        </div>
+                        <div>
+                            <label for="last_name">Last Name *</label>
+                            <input id="last_name" name="last_name" type="text" placeholder="Doe" required />
+                        </div>
                     </div>
-                    <div>
-                        <label for="last_name">Last Name</label>
-                        <input id="last_name" name="last_name" type="text" required />
-                    </div>
-                </div>
 
-                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 12px;">
-                    <div>
-                        <label for="email">Email</label>
-                        <input id="email" name="email" type="email" required />
+                    <div class="form-row">
+                        <div>
+                            <label for="email">Email *</label>
+                            <input id="email" name="email" type="email" placeholder="john@company.com" required />
+                        </div>
+                        <div>
+                            <label for="company">Company *</label>
+                            <input id="company" name="company" type="text" placeholder="Acme Inc." required />
+                        </div>
                     </div>
-                    <div>
-                        <label for="company">Company</label>
-                        <input id="company" name="company" type="text" required />
-                    </div>
-                </div>
 
-                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 12px;">
-                    <div>
-                        <label for="mobile">Mobile</label>
-                        <input id="mobile" name="mobile" type="text" />
+                    <div class="form-row">
+                        <div>
+                            <label for="mobile">Mobile</label>
+                            <input id="mobile" name="mobile" type="text" placeholder="+1 555-0192" />
+                        </div>
+                        <div>
+                            <label for="title">Title</label>
+                            <input id="title" name="title" type="text" placeholder="CTO / Director" />
+                        </div>
                     </div>
-                    <div>
-                        <label for="title">Title</label>
-                        <input id="title" name="title" type="text" />
-                    </div>
-                </div>
 
-                <label for="country_code">Country</label>
-                <select id="country_code" name="country_code">
-                    <option value="">--Select Country--</option>
-                    <option value="US">United States</option>
-                    <option value="CA">Canada</option>
-                    <option value="GB">United Kingdom</option>
-                    <option value="DE">Germany</option>
-                    <option value="IL">Israel</option>
-                    <option value="JP">Japan</option>
-                    <option value="BR">Brazil</option>
-                </select>
-
-                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 12px;">
-                    <div>
-                        <label for="industry">Industry</label>
-                        <select id="industry" name="industry">
-                            <option value="">--Select Industry--</option>
-                            <option value="Technology">Technology</option>
-                            <option value="Finance">Finance</option>
-                            <option value="Healthcare">Healthcare</option>
-                            <option value="Manufacturing">Manufacturing</option>
-                            <option value="Other">Other</option>
+                    <div class="form-group">
+                        <label for="country_code">Country</label>
+                        <select id="country_code" name="country_code">
+                            <option value="">-- Select Country --</option>
+                            <option value="US">United States</option>
+                            <option value="CA">Canada</option>
+                            <option value="GB">United Kingdom</option>
+                            <option value="DE">Germany</option>
+                            <option value="IL">Israel</option>
+                            <option value="JP">Japan</option>
+                            <option value="BR">Brazil</option>
                         </select>
                     </div>
-                    <div>
-                        <label for="00NQy000027WHez">Number of Employees</label>
-                        <select id="00NQy000027WHez" name="00NQy000027WHez">
-                            <option value="">--Select Size--</option>
-                            <option value="0-249">0-249</option>
-                            <option value="250-499">250-499</option>
-                            <option value="500-999">500-999</option>
-                            <option value="1,000-4,999">1,000-4,999</option>
-                            <option value="5,000-9,999">5,000-9,999</option>
-                            <option value="10,000+">10,000+</option>
-                        </select>
+
+                    <div class="form-row">
+                        <div>
+                            <label for="industry">Industry</label>
+                            <select id="industry" name="industry">
+                                <option value="">-- Select Industry --</option>
+                                <option value="Technology">Technology</option>
+                                <option value="Finance">Finance</option>
+                                <option value="Healthcare">Healthcare</option>
+                                <option value="Manufacturing">Manufacturing</option>
+                                <option value="Other">Other</option>
+                            </select>
+                        </div>
+                        <div>
+                            <label for="00NQy000027WHez">Employees</label>
+                            <select id="00NQy000027WHez" name="00NQy000027WHez">
+                                <option value="">-- Select Size --</option>
+                                <option value="0-249">0-249</option>
+                                <option value="250-499">250-499</option>
+                                <option value="500-999">500-999</option>
+                                <option value="1,000-4,999">1,000-4,999</option>
+                                <option value="5,000-9,999">5,000-9,999</option>
+                                <option value="10,000+">10,000+</option>
+                            </select>
+                        </div>
                     </div>
-                </div>
 
-                <input type="submit" value="Submit Request" class="btn-primary" style="width: 100%; margin-top: 20px; border: none; cursor: pointer;">
-            </form>
+                    <button type="submit" class="submit-btn">> SUBMIT REQUEST</button>
+                </form>
+            </div>
         </div>
-    </section>
 
-    <footer class="main-footer">
-        <p>&copy; Supreme IT Demo Project. All rights reserved.</p>
-    </footer>
+        <footer>
+            <p>&copy; Supreme IT Project | Salesforce Web-to-Lead Integration</p>
+        </footer>
+    </div>
 
+    <!-- JAVASCRIPT FOR DYNAMIC BACKGROUND PARTICLES -->
+    <script>
+        const canvas = document.getElementById('bg-canvas');
+        const ctx = canvas.getContext('2d');
+
+        function resizeCanvas() {
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+        }
+        window.addEventListener('resize', resizeCanvas);
+        resizeCanvas();
+
+        const particles = [];
+        const particleCount = 45;
+
+        for (let i = 0; i < particleCount; i++) {
+            particles.push({
+                x: Math.random() * canvas.width,
+                y: Math.random() * canvas.height,
+                radius: Math.random() * 2 + 1,
+                color: Math.random() > 0.5 ? '#38bdf8' : '#a855f7',
+                vx: (Math.random() - 0.5) * 0.6,
+                vy: (Math.random() - 0.5) * 0.6,
+                alpha: Math.random() * 0.5 + 0.2
+            });
+        }
+
+        function animate() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+            particles.forEach(p => {
+                p.x += p.vx;
+                p.y += p.vy;
+
+                if (p.x < 0) p.x = canvas.width;
+                if (p.x > canvas.width) p.x = 0;
+                if (p.y < 0) p.y = canvas.height;
+                if (p.y > canvas.height) p.y = 0;
+
+                ctx.beginPath();
+                ctx.arc(p.x, p.y, p.radius, 0, Math.PI * 2);
+                ctx.fillStyle = p.color;
+                ctx.globalAlpha = p.alpha;
+                ctx.shadowBlur = 10;
+                ctx.shadowColor = p.color;
+                ctx.fill();
+            });
+
+            requestAnimationFrame(animate);
+        }
+        animate();
+    </script>
 </body>
 </html>
