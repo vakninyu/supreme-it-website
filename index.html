@@ -820,6 +820,14 @@
             const emailValue = emailInput.value.trim();
             const mobileValue = mobileInput.value.trim();
             const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            
+            // Basic global phone format validation (allows +, digits, spaces, hyphens, and parentheses)
+            const phoneRegex = /^[0-9+\s()\-]{7,20}$/;
+
+            if (mobileValue && !phoneRegex.test(mobileValue)) {
+                errors.push("Please enter a valid phone number.");
+                mobileInput.classList.add('input-error');
+            }
 
             if (!emailValue && !mobileValue) {
                 errors.push("Please provide either an Email address or a Mobile phone number.");
