@@ -401,7 +401,8 @@
 
                     <div class="form-row">
                         <div>
-                            <label for="email">EMAIL <span style="color: #ff4d4d;">*</span></label>
+                            <label for="email">EMAIL <span style="font-size: 11px; color: #a0a0a0;">(Email or Mobile
+                                    required)</span></label>
                             <input id="email" maxlength="80" name="email" size="20" type="text" />
                         </div>
                         <div>
@@ -411,7 +412,8 @@
                     </div>
                     <div class="form-row">
                         <div>
-                            <label for="mobile">Mobile</label>
+                            <label for="mobile">MOBILE <span style="font-size: 11px; color: #a0a0a0;">(Email or Mobile
+                                    required)</span></label>
                             <input id="mobile" maxlength="40" name="mobile" size="20" type="text" />
                         </div>
                         <div>
@@ -781,57 +783,62 @@
         animate();
     </script>
     <script>
-document.getElementById('leadForm').addEventListener('submit', function(e) {
-    const firstNameInput = document.getElementById('first_name');
-    const lastNameInput = document.getElementById('last_name');
-    const emailInput = document.getElementById('email');
-    const companyInput = document.getElementById('company');
-    const errorDiv = document.getElementById('errorMessage');
+        document.getElementById('leadForm').addEventListener('submit', function (e) {
+            const firstNameInput = document.getElementById('first_name');
+            const lastNameInput = document.getElementById('last_name');
+            const companyInput = document.getElementById('company');
+            const emailInput = document.getElementById('email');
+            const mobileInput = document.getElementById('mobile');
+            const errorDiv = document.getElementById('errorMessage');
 
-    // Reset error styling on all required inputs
-    [firstNameInput, lastNameInput, emailInput, companyInput].forEach(input => {
-        if (input) input.classList.remove('input-error');
-    });
+            // Reset error styling on inputs
+            [firstNameInput, lastNameInput, companyInput, emailInput, mobileInput].forEach(input => {
+                if (input) input.classList.remove('input-error');
+            });
 
-    let errors = [];
+            let errors = [];
 
-    // Validate First Name
-    if (!firstNameInput.value.trim()) {
-        errors.push("First Name is required.");
-        firstNameInput.classList.add('input-error');
-    }
+            // Validate First Name
+            if (!firstNameInput.value.trim()) {
+                errors.push("First Name is required.");
+                firstNameInput.classList.add('input-error');
+            }
 
-    // Validate Last Name
-    if (!lastNameInput.value.trim()) {
-        errors.push("Last Name is required.");
-        lastNameInput.classList.add('input-error');
-    }
+            // Validate Last Name
+            if (!lastNameInput.value.trim()) {
+                errors.push("Last Name is required.");
+                lastNameInput.classList.add('input-error');
+            }
 
-    // Validate Company
-    if (!companyInput.value.trim()) {
-        errors.push("Company is required.");
-        companyInput.classList.add('input-error');
-    }
+            // Validate Company
+            if (!companyInput.value.trim()) {
+                errors.push("Company is required.");
+                companyInput.classList.add('input-error');
+            }
 
-    // Validate Email and format
-    const emailValue = emailInput.value.trim();
-    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    if (!emailValue) {
-        errors.push("Email is required.");
-        emailInput.classList.add('input-error');
-    } else if (!emailRegex.test(emailValue)) {
-        errors.push("Please enter a valid email address (e.g. name@company.com).");
-        emailInput.classList.add('input-error');
-    }
+            // Validate Email OR Mobile Phone
+            const emailValue = emailInput.value.trim();
+            const mobileValue = mobileInput.value.trim();
+            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
-    // Handle error display and form submission
-    if (errors.length > 0) {
-        e.preventDefault(); // Prevent form submission
-        errorDiv.innerHTML = "<strong>Please fix the following errors:</strong><br>• " + errors.join("<br>• ");
-        errorDiv.style.display = "block";
-    } else {
-        errorDiv.style.display = "none";
-    }
-});
-</script>
+            if (!emailValue && !mobileValue) {
+                errors.push("Please provide either an Email address or a Mobile phone number.");
+                emailInput.classList.add('input-error');
+                mobileInput.classList.add('input-error');
+            } else if (emailValue && !emailRegex.test(emailValue)) {
+                errors.push("Please enter a valid email address (e.g. name@company.com).");
+                emailInput.classList.add('input-error');
+            }
+
+            // Handle error display and form submission
+            if (errors.length > 0) {
+                e.preventDefault(); // Prevent form submission
+                errorDiv.innerHTML = "<strong>Please fix the following errors:</strong><br>• " + errors.join("<br>• ");
+                errorDiv.style.display = "block";
+            } else {
+                errorDiv.style.display = "none";
+            }
+        });
+    </script>
+
 </html>
