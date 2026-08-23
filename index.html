@@ -3,81 +3,142 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Contact Us - Supreme IT</title>
+    <title>Supreme IT - Enterprise Solutions</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-<div class="container">
-    <h2>Supreme IT</h2>
-    <p>Get in touch with our enterprise IT specialists</p>
+    <!-- Header -->
+    <header class="main-header">
+        <div class="logo-area">
+            <div class="logo-bubble">S</div>
+            <div class="logo-text">
+                <h1>Supreme IT</h1>
+                <p>Enterprise Hardware & Software</p>
+            </div>
+        </div>
+        <nav class="main-nav">
+            <a href="#about">About</a>
+            <a href="#solutions">Solutions</a>
+            <a href="#contact">Contact Us</a>
+        </nav>
+    </header>
 
-    <form action="https://webto.salesforce.com/servlet/servlet.WebToLead?encoding=UTF-8&orgId=00DQy00000vnb7F" method="POST">
+    <!-- Hero Section -->
+    <section class="hero" id="about">
+        <div class="hero-text">
+            <p class="hero-tagline">Global IT Services</p>
+            <h2>Powering Enterprise Technology Forward</h2>
+            <p>From hardware infrastructure to cloud solutions, Supreme IT delivers top-tier technology to corporate leaders across the US, UK, and Japan.</p>
+            <a href="#contact" class="btn-primary">Get Started</a>
+        </div>
+        <div class="hero-visual">
+            <div class="pixel-frame">
+                <div style="font-size: 50px; color: #fff;">💻</div>
+            </div>
+            <div class="pixel-shadow"></div>
+            <div class="hero-floating-tag">24/7 IT Support</div>
+        </div>
+    </section>
 
-        <!-- שדות מערכת נסתרים -->
-        <input type="hidden" name="oid" value="00DQy00000vnb7F">
-        <input type="hidden" name="retURL" value="https://www.google.com">
-        <input type="hidden" id="lead_source" name="lead_source" value="Web" />
-        
-        <!-- שיוך אוטומטי לקמפיין (החליפי את YOUR_CAMPAIGN_ID ב-ID האמיתי מסיילספורס) -->
-        <input type="hidden" name="Campaign_ID" value="YOUR_CAMPAIGN_ID">
-        <input type="hidden" name="member_status" value="Responded">
+    <div class="section-divider"></div>
 
-        <!-- שדות הטופס לפי דרישות המערכת -->
-        <label for="first_name">First Name</label>
-        <input id="first_name" name="first_name" type="text" required />
+    <!-- Contact Form Section -->
+    <section class="section section-soft" id="contact">
+        <h2>Contact Our Sales Team</h2>
+        <p style="margin-bottom: 20px;">Fill out the form below to connect with our regional specialists.</p>
 
-        <label for="last_name">Last Name</label>
-        <input id="last_name" name="last_name" type="text" required />
+        <div class="contact-box" style="max-width: 100%;">
+            <form action="https://webto.salesforce.com/servlet/servlet.WebToLead?encoding=UTF-8&orgId=00DQy00000vnb7F" method="POST">
 
-        <label for="email">Email</label>
-        <input id="email" name="email" type="email" required />
+                <!-- Salesforce System Fields -->
+                <input type="hidden" name="oid" value="00DQy00000vnb7F">
+                <input type="hidden" name="retURL" value="https://www.google.com">
+                <input type="hidden" id="lead_source" name="lead_source" value="Web" />
+                
+                <!-- Campaign ID Assignment -->
+                <input type="hidden" name="Campaign_ID" value="YOUR_CAMPAIGN_ID">
+                <input type="hidden" name="member_status" value="Responded">
 
-        <label for="company">Company</label>
-        <input id="company" name="company" type="text" required />
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 12px;">
+                    <div>
+                        <label for="first_name">First Name</label>
+                        <input id="first_name" name="first_name" type="text" required />
+                    </div>
+                    <div>
+                        <label for="last_name">Last Name</label>
+                        <input id="last_name" name="last_name" type="text" required />
+                    </div>
+                </div>
 
-        <label for="mobile">Mobile</label>
-        <input id="mobile" name="mobile" type="text" />
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 12px;">
+                    <div>
+                        <label for="email">Email</label>
+                        <input id="email" name="email" type="email" required />
+                    </div>
+                    <div>
+                        <label for="company">Company</label>
+                        <input id="company" name="company" type="text" required />
+                    </div>
+                </div>
 
-        <label for="title">Title</label>
-        <input id="title" name="title" type="text" />
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 12px;">
+                    <div>
+                        <label for="mobile">Mobile</label>
+                        <input id="mobile" name="mobile" type="text" />
+                    </div>
+                    <div>
+                        <label for="title">Title</label>
+                        <input id="title" name="title" type="text" />
+                    </div>
+                </div>
 
-        <label for="country_code">Country</label>
-        <select id="country_code" name="country_code">
-            <option value="">--Select Country--</option>
-            <option value="US">United States</option>
-            <option value="CA">Canada</option>
-            <option value="GB">United Kingdom</option>
-            <option value="DE">Germany</option>
-            <option value="IL">Israel</option>
-            <option value="JP">Japan</option>
-            <option value="BR">Brazil</option>
-        </select>
+                <label for="country_code">Country</label>
+                <select id="country_code" name="country_code">
+                    <option value="">--Select Country--</option>
+                    <option value="US">United States</option>
+                    <option value="CA">Canada</option>
+                    <option value="GB">United Kingdom</option>
+                    <option value="DE">Germany</option>
+                    <option value="IL">Israel</option>
+                    <option value="JP">Japan</option>
+                    <option value="BR">Brazil</option>
+                </select>
 
-        <label for="industry">Industry</label>
-        <select id="industry" name="industry">
-            <option value="">--Select Industry--</option>
-            <option value="Technology">Technology</option>
-            <option value="Finance">Finance</option>
-            <option value="Healthcare">Healthcare</option>
-            <option value="Manufacturing">Manufacturing</option>
-            <option value="Other">Other</option>
-        </select>
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 12px;">
+                    <div>
+                        <label for="industry">Industry</label>
+                        <select id="industry" name="industry">
+                            <option value="">--Select Industry--</option>
+                            <option value="Technology">Technology</option>
+                            <option value="Finance">Finance</option>
+                            <option value="Healthcare">Healthcare</option>
+                            <option value="Manufacturing">Manufacturing</option>
+                            <option value="Other">Other</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label for="00NQy000027WHez">Number of Employees</label>
+                        <select id="00NQy000027WHez" name="00NQy000027WHez">
+                            <option value="">--Select Size--</option>
+                            <option value="0-249">0-249</option>
+                            <option value="250-499">250-499</option>
+                            <option value="500-999">500-999</option>
+                            <option value="1,000-4,999">1,000-4,999</option>
+                            <option value="5,000-9,999">5,000-9,999</option>
+                            <option value="10,000+">10,000+</option>
+                        </select>
+                    </div>
+                </div>
 
-        <label for="00NQy000027WHez">Number of Employees</label>
-        <select id="00NQy000027WHez" name="00NQy000027WHez">
-            <option value="">--Select Size--</option>
-            <option value="0-249">0-249</option>
-            <option value="250-499">250-499</option>
-            <option value="500-999">500-999</option>
-            <option value="1,000-4,999">1,000-4,999</option>
-            <option value="5,000-9,999">5,000-9,999</option>
-            <option value="10,000+">10,000+</option>
-        </select>
+                <input type="submit" value="Submit Request" class="btn-primary" style="width: 100%; margin-top: 20px; border: none; cursor: pointer;">
+            </form>
+        </div>
+    </section>
 
-        <input type="submit" value="Submit Request">
-    </form>
-</div>
+    <footer class="main-footer">
+        <p>&copy; Supreme IT Demo Project. All rights reserved.</p>
+    </footer>
 
 </body>
 </html>
