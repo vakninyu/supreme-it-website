@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,47 +8,315 @@
     <title>Supreme IT | Enterprise Portal</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Plus+Jakarta+Sans:wght@400;600;700;800&display=swap" rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Plus+Jakarta+Sans:wght@400;600;700;800&display=swap"
+        rel="stylesheet">
 
     <style>
-        * { box-sizing: border-box; margin: 0; padding: 0; }
-        body { font-family: 'Plus Jakarta Sans', sans-serif; background-color: #090d16; color: #e2e8f0; line-height: 1.6; overflow-x: hidden; position: relative; min-height: 100vh; }
-        #bg-canvas { position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: 0; pointer-events: none; }
-        .wrapper { position: relative; z-index: 1; max-width: 1200px; margin: 0 auto; padding: 0 24px; }
-        header { display: flex; justify-content: space-between; align-items: center; padding: 24px 0; border-bottom: 1px solid rgba(255, 255, 255, 0.08); }
-        .logo-box { display: flex; align-items: center; gap: 14px; }
-        .logo-icon { width: 48px; height: 48px; background: linear-gradient(135deg, #a855f7, #ec4899); border-radius: 12px; display: flex; align-items: center; justify-content: center; font-family: 'Press Start 2P', cursive; font-size: 18px; color: #fff; box-shadow: 0 0 20px rgba(168, 85, 247, 0.5); text-shadow: 2px 2px #000; }
-        .logo-text h1 { font-family: 'Press Start 2P', cursive; font-size: 16px; background: linear-gradient(90deg, #38bdf8, #818cf8, #c084fc); -webkit-background-clip: text; -webkit-text-fill-color: transparent; letter-spacing: -0.5px; }
-        .logo-text p { font-size: 12px; color: #64748b; }
-        nav a { color: #94a3b8; text-decoration: none; margin-left: 24px; font-weight: 600; font-size: 14px; transition: all 0.2s; }
-        nav a:hover { color: #38bdf8; text-shadow: 0 0 8px rgba(56, 189, 248, 0.6); }
-        .main-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 48px; align-items: start; padding: 60px 0; }
-        .hero-badge { display: inline-block; padding: 6px 14px; background: rgba(168, 85, 247, 0.15); border: 1px solid rgba(168, 85, 247, 0.4); border-radius: 20px; color: #c084fc; font-size: 12px; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 16px; }
-        .hero-title { font-family: 'Press Start 2P', cursive; font-size: 26px; line-height: 1.5; color: #fff; margin-bottom: 20px; text-shadow: 0 0 15px rgba(255, 255, 255, 0.2); }
-        .hero-title span { color: #38bdf8; }
-        .hero-description { font-size: 16px; color: #94a3b8; margin-bottom: 30px; }
-        .feature-cards { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-top: 30px; }
-        .card { background: rgba(15, 23, 42, 0.6); border: 1px solid rgba(255, 255, 255, 0.08); border-radius: 16px; padding: 20px; backdrop-filter: blur(10px); transition: transform 0.3s, border-color 0.3s; }
-        .card:hover { transform: translateY(-4px); border-color: rgba(56, 189, 248, 0.4); box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5); }
-        .card-icon { font-size: 24px; margin-bottom: 8px; }
-        .card h4 { font-family: 'Press Start 2P', cursive; font-size: 11px; color: #f1f5f9; margin-bottom: 6px; }
-        .card p { font-size: 12px; color: #64748b; }
-        .form-card { background: rgba(15, 23, 42, 0.85); border: 1px solid rgba(168, 85, 247, 0.3); border-radius: 24px; padding: 36px; box-shadow: 0 0 40px rgba(168, 85, 247, 0.15); backdrop-filter: blur(12px); position: relative; }
-        .form-card::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px; background: linear-gradient(90deg, #38bdf8, #a855f7, #ec4899); border-radius: 24px 24px 0 0; }
-        .form-title { font-family: 'Press Start 2P', cursive; font-size: 16px; color: #fff; margin-bottom: 8px; }
-        .form-subtitle { font-size: 13px; color: #94a3b8; margin-bottom: 24px; }
-        .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-bottom: 16px; }
-        .form-group { margin-bottom: 16px; }
-        label { display: block; font-size: 12px; font-weight: 700; color: #cbd5e1; margin-bottom: 6px; text-transform: uppercase; letter-spacing: 0.5px; }
-        input[type="text"], input[type="email"], select { width: 100%; padding: 12px 14px; background: rgba(30, 41, 59, 0.7); border: 1px solid rgba(255, 255, 255, 0.12); border-radius: 10px; color: #fff; font-size: 14px; font-family: inherit; outline: none; transition: all 0.2s; }
-        input[type="text"]:focus, input[type="email"]:focus, select:focus { border-color: #38bdf8; box-shadow: 0 0 12px rgba(56, 189, 248, 0.3); background: rgba(30, 41, 59, 0.9); }
-        select option { background-color: #0f172a; color: #fff; }
-        .submit-btn { width: 100%; padding: 14px; margin-top: 10px; background: linear-gradient(135deg, #38bdf8, #818cf8, #a855f7); border: none; border-radius: 12px; color: #fff; font-family: 'Press Start 2P', cursive; font-size: 12px; cursor: pointer; box-shadow: 0 0 20px rgba(56, 189, 248, 0.4); transition: all 0.2s; }
-        .submit-btn:hover { transform: translateY(-2px); box-shadow: 0 0 30px rgba(168, 85, 247, 0.6); }
-        footer { text-align: center; padding: 40px 0; color: #475569; font-size: 12px; border-top: 1px solid rgba(255, 255, 255, 0.05); }
-        @media (max-width: 900px) { .main-grid { grid-template-columns: 1fr; } .feature-cards { grid-template-columns: 1fr; } .form-row { grid-template-columns: 1fr; } }
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            background-color: #090d16;
+            color: #e2e8f0;
+            line-height: 1.6;
+            overflow-x: hidden;
+            position: relative;
+            min-height: 100vh;
+        }
+
+        #bg-canvas {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 0;
+            pointer-events: none;
+        }
+
+        .wrapper {
+            position: relative;
+            z-index: 1;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 24px 0;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+        }
+
+        .logo-box {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+        }
+
+        .logo-icon {
+            width: 48px;
+            height: 48px;
+            background: linear-gradient(135deg, #a855f7, #ec4899);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: 'Press Start 2P', cursive;
+            font-size: 18px;
+            color: #fff;
+            box-shadow: 0 0 20px rgba(168, 85, 247, 0.5);
+            text-shadow: 2px 2px #000;
+        }
+
+        .logo-text h1 {
+            font-family: 'Press Start 2P', cursive;
+            font-size: 16px;
+            background: linear-gradient(90deg, #38bdf8, #818cf8, #c084fc);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            letter-spacing: -0.5px;
+        }
+
+        .logo-text p {
+            font-size: 12px;
+            color: #64748b;
+        }
+
+        nav a {
+            color: #94a3b8;
+            text-decoration: none;
+            margin-left: 24px;
+            font-weight: 600;
+            font-size: 14px;
+            transition: all 0.2s;
+        }
+
+        nav a:hover {
+            color: #38bdf8;
+            text-shadow: 0 0 8px rgba(56, 189, 248, 0.6);
+        }
+
+        .main-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 48px;
+            align-items: start;
+            padding: 60px 0;
+        }
+
+        .hero-badge {
+            display: inline-block;
+            padding: 6px 14px;
+            background: rgba(168, 85, 247, 0.15);
+            border: 1px solid rgba(168, 85, 247, 0.4);
+            border-radius: 20px;
+            color: #c084fc;
+            font-size: 12px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 16px;
+        }
+
+        .hero-title {
+            font-family: 'Press Start 2P', cursive;
+            font-size: 26px;
+            line-height: 1.5;
+            color: #fff;
+            margin-bottom: 20px;
+            text-shadow: 0 0 15px rgba(255, 255, 255, 0.2);
+        }
+
+        .hero-title span {
+            color: #38bdf8;
+        }
+
+        .hero-description {
+            font-size: 16px;
+            color: #94a3b8;
+            margin-bottom: 30px;
+        }
+
+        .feature-cards {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 16px;
+            margin-top: 30px;
+        }
+
+        .card {
+            background: rgba(15, 23, 42, 0.6);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 16px;
+            padding: 20px;
+            backdrop-filter: blur(10px);
+            transition: transform 0.3s, border-color 0.3s;
+        }
+
+        .card:hover {
+            transform: translateY(-4px);
+            border-color: rgba(56, 189, 248, 0.4);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+        }
+
+        .card-icon {
+            font-size: 24px;
+            margin-bottom: 8px;
+        }
+
+        .card h4 {
+            font-family: 'Press Start 2P', cursive;
+            font-size: 11px;
+            color: #f1f5f9;
+            margin-bottom: 6px;
+        }
+
+        .card p {
+            font-size: 12px;
+            color: #64748b;
+        }
+
+        .form-card {
+            background: rgba(15, 23, 42, 0.85);
+            border: 1px solid rgba(168, 85, 247, 0.3);
+            border-radius: 24px;
+            padding: 36px;
+            box-shadow: 0 0 40px rgba(168, 85, 247, 0.15);
+            backdrop-filter: blur(12px);
+            position: relative;
+        }
+
+        .form-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: linear-gradient(90deg, #38bdf8, #a855f7, #ec4899);
+            border-radius: 24px 24px 0 0;
+        }
+
+        .form-title {
+            font-family: 'Press Start 2P', cursive;
+            font-size: 16px;
+            color: #fff;
+            margin-bottom: 8px;
+        }
+
+        .form-subtitle {
+            font-size: 13px;
+            color: #94a3b8;
+            margin-bottom: 24px;
+        }
+
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 16px;
+            margin-bottom: 16px;
+        }
+
+        .form-group {
+            margin-bottom: 16px;
+        }
+
+        label {
+            display: block;
+            font-size: 12px;
+            font-weight: 700;
+            color: #cbd5e1;
+            margin-bottom: 6px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        input[type="text"],
+        input[type="email"],
+        select {
+            width: 100%;
+            padding: 12px 14px;
+            background: rgba(30, 41, 59, 0.7);
+            border: 1px solid rgba(255, 255, 255, 0.12);
+            border-radius: 10px;
+            color: #fff;
+            font-size: 14px;
+            font-family: inherit;
+            outline: none;
+            transition: all 0.2s;
+        }
+
+        input[type="text"]:focus,
+        input[type="email"]:focus,
+        select:focus {
+            border-color: #38bdf8;
+            box-shadow: 0 0 12px rgba(56, 189, 248, 0.3);
+            background: rgba(30, 41, 59, 0.9);
+        }
+
+        select option {
+            background-color: #0f172a;
+            color: #fff;
+        }
+
+        /* Red glow for invalid fields */
+        .input-error {
+            border-color: #ff4d4d !important;
+            box-shadow: 0 0 10px rgba(255, 77, 77, 0.6) !important;
+        }
+
+        .submit-btn {
+            width: 100%;
+            padding: 14px;
+            margin-top: 10px;
+            background: linear-gradient(135deg, #38bdf8, #818cf8, #a855f7);
+            border: none;
+            border-radius: 12px;
+            color: #fff;
+            font-family: 'Press Start 2P', cursive;
+            font-size: 12px;
+            cursor: pointer;
+            box-shadow: 0 0 20px rgba(56, 189, 248, 0.4);
+            transition: all 0.2s;
+        }
+
+        .submit-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 0 30px rgba(168, 85, 247, 0.6);
+        }
+
+        footer {
+            text-align: center;
+            padding: 40px 0;
+            color: #475569;
+            font-size: 12px;
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        @media (max-width: 900px) {
+            .main-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .feature-cards {
+                grid-template-columns: 1fr;
+            }
+
+            .form-row {
+                grid-template-columns: 1fr;
+            }
+        }
     </style>
 </head>
+
 <body>
 
     <canvas id="bg-canvas"></canvas>
@@ -73,52 +342,73 @@
                 <span class="hero-badge">⚡ NEXT-GEN HARDWARE & CLOUD</span>
                 <h2 class="hero-title">POWERING <span>ENTERPRISE</span> FORWARD</h2>
                 <p class="hero-description">
-                    Supreme IT delivers high-performance infrastructure, cloud deployment, and 24/7 dedicated support to corporate leaders globally.
+                    Supreme IT delivers high-performance infrastructure, cloud deployment, and 24/7 dedicated support to
+                    corporate leaders globally.
                 </p>
 
                 <div class="feature-cards" id="solutions">
-                    <div class="card"><div class="card-icon">🌐</div><h4>GLOBAL MESH</h4><p>Ultra-low latency infrastructure across US, EU & JP.</p></div>
-                    <div class="card"><div class="card-icon">🔒</div><h4>CYBER GUARD</h4><p>Enterprise-grade threat prevention & automated compliance.</p></div>
-                    <div class="card"><div class="card-icon">🚀</div><h4>CLOUD MATRIX</h4><p>Seamless hybrid cloud integration for scalable growth.</p></div>
-                    <div class="card"><div class="card-icon">⚡</div><h4>24/7 SUPPORT</h4><p>Dedicated engineers on standby to keep you online.</p></div>
+                    <div class="card">
+                        <div class="card-icon">🌐</div>
+                        <h4>GLOBAL MESH</h4>
+                        <p>Ultra-low latency infrastructure across US, EU & JP.</p>
+                    </div>
+                    <div class="card">
+                        <div class="card-icon">🔒</div>
+                        <h4>CYBER GUARD</h4>
+                        <p>Enterprise-grade threat prevention & automated compliance.</p>
+                    </div>
+                    <div class="card">
+                        <div class="card-icon">🚀</div>
+                        <h4>CLOUD MATRIX</h4>
+                        <p>Seamless hybrid cloud integration for scalable growth.</p>
+                    </div>
+                    <div class="card">
+                        <div class="card-icon">⚡</div>
+                        <h4>24/7 SUPPORT</h4>
+                        <p>Dedicated engineers on standby to keep you online.</p>
+                    </div>
                 </div>
             </div>
 
             <div class="form-card" id="contact">
                 <h3 class="form-title">CONNECT WITH US</h3>
-                <p class="form-subtitle">Fill out the request below to trigger automated Lead creation in Salesforce.</p>
+                <p class="form-subtitle">Fill out the request below to trigger automated Lead creation in Salesforce.
+                </p>
 
-                <form id="leadForm" action="https://webto.salesforce.com/servlet/servlet.WebToLead?encoding=UTF-8&orgId=00DQy00000vnb7F" method="POST" novalidate>
+                <form id="leadForm"
+                    action="https://webto.salesforce.com/servlet/servlet.WebToLead?encoding=UTF-8&orgId=00DQy00000vnb7F"
+                    method="POST" novalidate>
                     <!-- HIDDEN SYSTEM FIELDS -->
                     <input type="hidden" name="oid" value="00DQy00000vnb7F">
-                    <input type="hidden" name="retURL" value="https://vakninyu.github.io/supreme-it-website/thanks.html">
+                    <input type="hidden" name="retURL"
+                        value="https://vakninyu.github.io/supreme-it-website/thanks.html">
                     <input type="hidden" id="lead_source" name="lead_source" value="Web" />
-                    
+
                     <!-- CAMPAIGN ASSIGNMENT -->
                     <input type="hidden" name="Campaign_ID" value="701Qy00002IMe53IAD">
                     <input type="hidden" name="member_status" value="Responded">
 
                     <div class="form-row">
-                    <div>
-                        <label for="first_name">FIRST NAME <span style="color: #ff4d4d;">*</span></label>
-            <input id="first_name" maxlength="40" name="first_name" size="20" type="text" />
-        </div>
-        <div>
-            <label for="last_name">LAST NAME <span style="color: #ff4d4d;">*</span></label>
-            <input id="last_name" maxlength="80" name="last_name" size="20" type="text" />
-        </div>
-    </div>
+                        <div>
+                            <label for="first_name">FIRST NAME <span style="color: #ff4d4d;">*</span></label>
+                            <input id="first_name" maxlength="40" name="first_name" size="20" type="text" />
+                        </div>
+                        <div>
+                            <label for="last_name">LAST NAME <span style="color: #ff4d4d;">*</span></label>
+                            <input id="last_name" maxlength="80" name="last_name" size="20" type="text" />
+                        </div>
+                    </div>
 
-    <div class="form-row">
-        <div>
-            <label for="email">EMAIL <span style="color: #ff4d4d;">*</span></label>
-            <input id="email" maxlength="80" name="email" size="20" type="text" />
-        </div>
-        <div>
-            <label for="company">COMPANY <span style="color: #ff4d4d;">*</span></label>
-            <input id="company" maxlength="40" name="company" size="20" type="text" />
-        </div>
-    </div>
+                    <div class="form-row">
+                        <div>
+                            <label for="email">EMAIL <span style="color: #ff4d4d;">*</span></label>
+                            <input id="email" maxlength="80" name="email" size="20" type="text" />
+                        </div>
+                        <div>
+                            <label for="company">COMPANY <span style="color: #ff4d4d;">*</span></label>
+                            <input id="company" maxlength="40" name="company" size="20" type="text" />
+                        </div>
+                    </div>
                     <div class="form-row">
                         <div>
                             <label for="mobile">Mobile</label>
@@ -425,7 +715,9 @@
                         </div>
                     </div>
 
-                   <div id="errorMessage" style="display: none; color: #ff4d4d; background: rgba(255, 77, 77, 0.1); border: 1px solid #ff4d4d; padding: 12px; border-radius: 8px; margin-top: 15px; font-size: 14px; text-align: left;"></div>
+                    <div id="errorMessage"
+                        style="display: none; color: #ff4d4d; background: rgba(255, 77, 77, 0.1); border: 1px solid #ff4d4d; padding: 12px; border-radius: 8px; margin-top: 15px; font-size: 14px; text-align: left;">
+                    </div>
 
                     <button type="submit" class="submit-btn">> SUBMIT REQUEST</button>
                 </form>
@@ -490,36 +782,56 @@
     </script>
     <script>
 document.getElementById('leadForm').addEventListener('submit', function(e) {
-    const firstName = document.getElementById('first_name').value.trim();
-    const lastName = document.getElementById('last_name').value.trim();
-    const email = document.getElementById('email').value.trim();
-    const company = document.getElementById('company').value.trim();
+    const firstNameInput = document.getElementById('first_name');
+    const lastNameInput = document.getElementById('last_name');
+    const emailInput = document.getElementById('email');
+    const companyInput = document.getElementById('company');
     const errorDiv = document.getElementById('errorMessage');
+
+    // Reset error styling on all required inputs
+    [firstNameInput, lastNameInput, emailInput, companyInput].forEach(input => {
+        if (input) input.classList.remove('input-error');
+    });
 
     let errors = [];
 
-    // בדיקות שדות חובה באנגלית
-    if (!firstName) errors.push("First Name is required.");
-    if (!lastName) errors.push("Last Name is required.");
-    if (!company) errors.push("Company is required.");
-    
-    // בדיקת מייל ותקינות פורמט
-    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    if (!email) {
-        errors.push("Email is required.");
-    } else if (!emailRegex.test(email)) {
-        errors.push("Please enter a valid email address (e.g. name@company.com).");
+    // Validate First Name
+    if (!firstNameInput.value.trim()) {
+        errors.push("First Name is required.");
+        firstNameInput.classList.add('input-error');
     }
 
-    // אם יש שגיאות - עצור את השליחה והצג אזהרה מרוכזת באנגלית
+    // Validate Last Name
+    if (!lastNameInput.value.trim()) {
+        errors.push("Last Name is required.");
+        lastNameInput.classList.add('input-error');
+    }
+
+    // Validate Company
+    if (!companyInput.value.trim()) {
+        errors.push("Company is required.");
+        companyInput.classList.add('input-error');
+    }
+
+    // Validate Email and format
+    const emailValue = emailInput.value.trim();
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailValue) {
+        errors.push("Email is required.");
+        emailInput.classList.add('input-error');
+    } else if (!emailRegex.test(emailValue)) {
+        errors.push("Please enter a valid email address (e.g. name@company.com).");
+        emailInput.classList.add('input-error');
+    }
+
+    // Handle error display and form submission
     if (errors.length > 0) {
-        e.preventDefault(); // מונע שליחה לגוגל / סיילספורס
+        e.preventDefault(); // Prevent form submission
         errorDiv.innerHTML = "<strong>Please fix the following errors:</strong><br>• " + errors.join("<br>• ");
         errorDiv.style.display = "block";
     } else {
         errorDiv.style.display = "none";
     }
-    });
+});
 </script>
-</body>
 </html>
