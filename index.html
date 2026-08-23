@@ -140,9 +140,10 @@
         }
 
         .hero-description {
-            font-size: 16px;
-            color: #94a3b8;
-            margin-bottom: 30px;
+            font-size: 16px !important;
+            color: #e2e8f0 !important;
+            /* צבע בהיר וקריא */
+            line-height: 1.6 !important;
         }
 
         .feature-cards {
@@ -180,8 +181,9 @@
         }
 
         .card p {
-            font-size: 12px;
-            color: #64748b;
+            font-size: 14px;
+            color: #cbd5e1;
+            line-height: 1.5;
         }
 
         .form-card {
@@ -350,12 +352,12 @@
                     <div class="card">
                         <div class="card-icon">🌐</div>
                         <h4>GLOBAL MESH</h4>
-                        <p>Ultra-low latency infrastructure across US, EU & JP.</p>
+                        <p>Reliable, low-delay infrastructure powering enterprise offices worldwide.</p>
                     </div>
                     <div class="card">
                         <div class="card-icon">🔒</div>
                         <h4>CYBER GUARD</h4>
-                        <p>Enterprise-grade threat prevention & automated compliance.</p>
+                        <p>Advanced protection against cyber threats to keep corporate data safe.</p>
                     </div>
                     <div class="card">
                         <div class="card-icon">🚀</div>
@@ -372,8 +374,8 @@
 
             <div class="form-card" id="contact">
                 <h3 class="form-title">CONNECT WITH US</h3>
-                <p class="form-subtitle">Fill out the request below to trigger automated Lead creation in Salesforce.
-                </p>
+                <p class="form-subtitle">Fill out the request below and our regional sales team will get in touch
+                    shortly.</p>
 
                 <form id="leadForm"
                     action="https://webto.salesforce.com/servlet/servlet.WebToLead?encoding=UTF-8&orgId=00DQy00000vnb7F"
@@ -726,9 +728,10 @@
             </div>
         </div>
 
-        <footer>
-            <p>&copy; Supreme IT Project | Salesforce Web-to-Lead Integration</p>
-        </footer>
+    </div>
+    <footer>
+        <p>&copy; Supreme IT Project | Salesforce Web-to-Lead Integration</p>
+    </footer>
     </div>
 
     <script>
@@ -791,7 +794,7 @@
             const mobileInput = document.getElementById('mobile');
             const errorDiv = document.getElementById('errorMessage');
 
-            // Reset error styling on inputs
+            // Reset error styling on all inputs
             [firstNameInput, lastNameInput, companyInput, emailInput, mobileInput].forEach(input => {
                 if (input) input.classList.remove('input-error');
             });
@@ -820,15 +823,15 @@
             const emailValue = emailInput.value.trim();
             const mobileValue = mobileInput.value.trim();
             const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-            
-            // Basic global phone format validation (allows +, digits, spaces, hyphens, and parentheses)
             const phoneRegex = /^[0-9+\s()\-]{7,20}$/;
 
+            // Check Mobile format if populated
             if (mobileValue && !phoneRegex.test(mobileValue)) {
                 errors.push("Please enter a valid phone number.");
                 mobileInput.classList.add('input-error');
             }
 
+            // Check that at least Email or Mobile is present
             if (!emailValue && !mobileValue) {
                 errors.push("Please provide either an Email address or a Mobile phone number.");
                 emailInput.classList.add('input-error');
